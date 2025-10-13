@@ -1,23 +1,131 @@
-﻿# DeepCaps for Galaxy Morphology Classification
+﻿# 🧠 DeepCaps_Pytorch  
+> PyTorch implementation and training of *DeepCaps: Going Deeper with Capsule Networks*
 
-This implementation is done by referring to the official implementation of DeepCaps by [1], a PyTorch implementation [2] and the official paper at https://arxiv.org/abs/1904.09546. 
 
-## How to Use with Your Own Custom Dataset
-To train on your own custom dataset, simply change the required parameters in `cfg.py` and write your own class to load the dataset in `load_data.py`. Finally, replace line 19 in `train.py` appropriately to point to your custom class. No further changes should be required to train the model. The training can be executed with 
+![Python](https://img.shields.io/badge/Python-3.10-blue)
+![PyTorch](https://img.shields.io/badge/PyTorch-2.0-red)
+
+
+# 🚀 Overview
+
+**DeepCaps_Pytorch** is a PyTorch implementation of *DeepCaps: Going Deeper with Capsule Networks*, based on the paper
+"DeepCaps: Going Deeper with Capsule Networks" (Rajasegaran et al., 2019). See: https://arxiv.org/abs/1904.09546
+
+This project adapts the DeepCaps architecture for applications such as galaxy morphology classification (using SDSS / Galaxy Zoo data) as part of an academic research investigation.  
+It demonstrates how Capsule Networks can be extended to deeper architectures and compared against CNN-based baselines.
+
+<br/>
+
+# ✨ Features
+
+- 🧩 Modular implementation of DeepCaps architecture in PyTorch  
+- 📈 Training, evaluation, and prediction scripts  
+- 🪐 Dataset support for SDSS / Galaxy Zoo images  
+- ⚙️ Configuration system (`cfg.py`) for hyperparameter tuning  
+- 📊 Visualization tools for accuracy and loss curves  
+- 🧠 Easily extendable to new datasets and domains  
+
+<br/>
+
+# 🧠 Tech Stack
+
+- **Language:** Python 3.10+  
+- **Framework:** PyTorch  
+- **Visualization:** Matplotlib, Seaborn  
+- **Utilities:** NumPy, tqdm, Pillow  
+
+<br/>
+
+
+# 📁 Project Structure
+
+```plaintext
+
+├── acc_plot.py           # Plot accuracy/loss curves
+├── cfg.py                # Configuration / hyperparameters
+├── helpers.py            # Utility functions
+├── load_data.py          # Dataset loader base
+├── load_data_sdss.py     # SDSS-specific data loader
+├── model.py              # DeepCaps architecture
+├── plot.py               # Visualization utilities
+├── predictor.py          # Inference and prediction
+├── train.py              # Model training script
+├── requirements.txt
+└── README.md
 ```
+
+
+# ⚙️ Installation
+
+Clone the repository and install dependencies:
+
+```bash
+git clone https://github.com/Commit2Cosmos/DeepCaps_Pytorch.git
+cd DeepCaps_Pytorch
+pip install -r requirements.txt
+```
+
+If using a GPU, ensure PyTorch is installed with CUDA support.
+You can verify this by running:
+
+```bash
+python -c "import torch; print(torch.cuda.is_available())"
+```
+
+
+# 💻 Usage
+
+## 🏋️ Training
+
+
+To train the DeepCaps model, simply run:
+
+```bash
 python train.py
 ```
 
-## DeepCaps on Galaxy Zoo Images
-As part of my Masters project, the DeepCaps network was trained on part of the SDSS DR7 dataset with corresponding labels taken from the Galaxy Zoo 2 project [3] and the Simard et al. structural parameter catalogue [4]. The network was trained on greyscale images for 200 epochs.
+You can modify hyperparameters (epochs, learning rate, dataset paths, etc.) inside cfg.py.
 
 
-## References
+## 🔮 Prediction / Inference
 
-[1] https://github.com/brjathu/deepcaps
+Once trained, you can run inference using:
 
-[2] https://github.com/HopefulRational/DeepCaps-PyTorch
+```bash
+python predictor.py
+```
 
-[3] https://data.galaxyzoo.org
+<br/>
 
-[4] https://ui.adsabs.harvard.edu/abs/2011ApJS..196...11S/abstract
+# 📊 Examples / Results
+
+
+<div style="background-color: white; padding: 5px; margin: 25px 0px">
+    <img src="results/acc_rmse_r2.png" alt="Your image">
+</div>
+
+
+
+<div style="background-color: white; padding: 0px;margin: 25px 0px">
+    <img src="results/acc.png" alt="Your image">
+</div>
+
+<br/>
+
+# 🧩 How to Use with Your Own Dataset
+
+1.	Update cfg.py — modify dataset paths, batch size, and training hyperparameters.
+2.	Add a new loader — write a new dataset class in load_data.py following the torch.utils.data.Dataset interface.
+3.	Edit train.py — point the dataset reference to your new loader.
+4.	Run training — DeepCaps will adapt to the new data dimensions and classes.
+5.	Evaluate and visualize — use acc_plot.py and plot.py to generate metrics.
+
+
+<br/>
+
+# 📚 References
+
+1. [Rajasegaran, J., Jayasundara, V., Jayasekara, S., et al. (2019). DeepCaps: Going Deeper with Capsule Networks. arXiv:1904.09546](https://arxiv.org/abs/1904.09546)
+2. [Original TensorFlow Implementation](https://github.com/HopefulRational/DeepCaps-PyTorch)
+3. [PyTorch Reference Implementation](https://github.com/Ugenteraan/DeepCaps)
+4. [Galaxy Zoo dataset](https://data.galaxyzoo.org)
