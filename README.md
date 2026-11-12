@@ -1,5 +1,7 @@
 ﻿# 🧠 DeepCaps_Pytorch  
 > PyTorch implementation and training of *DeepCaps: Going Deeper with Capsule Networks*
+>
+> Forked from [Ugenteraan/DeepCaps](https://github.com/Ugenteraan/DeepCaps).
 
 
 ![Python](https://img.shields.io/badge/Python-3.10-blue)
